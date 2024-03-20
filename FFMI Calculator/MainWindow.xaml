@@ -1,0 +1,140 @@
+﻿<Window x:Class="FFMI_Calculator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FFMI_Calculator"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
+        <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
+        <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF569DE5"/>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="AllowDrop" Value="true"/>
+            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.Focus.Border}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
+                        <Condition Property="IsSelectionActive" Value="false"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.Background>
+            <ImageBrush/>
+        </Grid.Background>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="91,104,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" Width="120" BorderBrush="{x:Null}" FontFamily="Segoe UI Variable Text Semibold">
+            <TextBox.Background>
+                <RadialGradientBrush>
+                    <GradientStop Color="#FF49D5F9" Offset="1"/>
+                    <GradientStop Color="#FF00CAFF"/>
+                </RadialGradientBrush>
+            </TextBox.Background>
+        </TextBox>
+        <Label Content="Inputs" HorizontalAlignment="Left" Margin="91,47,0,0" VerticalAlignment="Top" FontFamily="Cascadia Code SemiBold" FontSize="18" FontWeight="Bold"/>
+        <Label Content="Results" HorizontalAlignment="Left" Margin="366,47,0,0" VerticalAlignment="Top" FontFamily="Cascadia Code SemiBold" FontSize="18" FontWeight="Bold"/>
+        <TextBlock HorizontalAlignment="Left" Margin="91,83,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Segoe UI Light" FontSize="16" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="91,135,0,0" TextWrapping="Wrap" Text="Age" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Segoe UI Light" FontSize="16" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="91,203,0,0" TextWrapping="Wrap" Text="Height" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Segoe UI Light" FontSize="16" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="91,267,0,0" TextWrapping="Wrap" Text="Weight" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Segoe UI Light" FontSize="16" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="91,331,0,0" TextWrapping="Wrap" Text="Body fat % Estimate" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Segoe UI Light" FontSize="16" Foreground="White"/>
+        <Label Content="FFMI Calculator" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Cascadia Code SemiBold" FontSize="18" FontWeight="Bold" Margin="10,10,0,0" Foreground="#FF404786"/>
+        <TextBlock HorizontalAlignment="Left" Margin="366,104,0,0" TextWrapping="Wrap" Text="FFMI" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Segoe UI Light" FontSize="16" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="366,162,0,0" TextWrapping="Wrap" Text="Normalized FFMI" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Segoe UI Light" FontSize="16" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="366,229,0,0" TextWrapping="Wrap" Text="Fat-free mass" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Segoe UI Light" FontSize="16" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="366,290,0,0" TextWrapping="Wrap" Text="Total body fat" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Segoe UI Light" FontSize="16" Foreground="White"/>
+        <Button Content="Calculate" HorizontalAlignment="Left" Margin="91,388,0,0" VerticalAlignment="Top" Width="75" BorderBrush="{x:Null}">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="White"/>
+                    <GradientStop Color="#FF639EFD" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Label Content="Users" HorizontalAlignment="Left" Margin="582,47,0,0" VerticalAlignment="Top" FontFamily="Cascadia Code SemiBold" FontSize="18" FontWeight="Bold"/>
+        <DataGrid HorizontalAlignment="Left" Height="100" Margin="582,84,0,0" VerticalAlignment="Top" Width="172"/>
+        <DataGrid HorizontalAlignment="Left" Height="100" Margin="582,205,0,0" VerticalAlignment="Top" Width="172"/>
+        <Label Content="Index Interpretation:" HorizontalAlignment="Left" Margin="366,376,0,0" VerticalAlignment="Top" FontFamily="Unispace" TextBlock.FontWeight="Bold" TextBlock.FontFamily="Segoe UI Light" TextBlock.FontSize="16" TextBlock.Foreground="Black" Foreground="White"/>
+        <Rectangle HorizontalAlignment="Center" Height="79" VerticalAlignment="Top" Width="856" Panel.ZIndex="-2">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF6DB6FF" Offset="1"/>
+                    <GradientStop Color="#FF92DFFF" Offset="0"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Center" Height="356" Margin="0,78,0,0" VerticalAlignment="Top" Width="800" Panel.ZIndex="-2">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF608EFF"/>
+                    <GradientStop Color="#FF2262FF" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="91,164,0,0" TextWrapping="Wrap" Text="Age" VerticalAlignment="Top" Width="120" BorderBrush="{x:Null}" FontFamily="Segoe UI Variable Text Semibold">
+            <TextBox.Background>
+                <RadialGradientBrush>
+                    <GradientStop Color="#FF49D5F9" Offset="1"/>
+                    <GradientStop Color="#FF00CAFF"/>
+                </RadialGradientBrush>
+            </TextBox.Background>
+        </TextBox>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="91,234,0,0" TextWrapping="Wrap" Text="Height" VerticalAlignment="Top" Width="120" BorderBrush="{x:Null}" FontFamily="Segoe UI Variable Text Semibold">
+            <TextBox.Background>
+                <RadialGradientBrush>
+                    <GradientStop Color="#FF49D5F9" Offset="1"/>
+                    <GradientStop Color="#FF00CAFF"/>
+                </RadialGradientBrush>
+            </TextBox.Background>
+        </TextBox>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="91,294,0,0" TextWrapping="Wrap" Text="Weight" VerticalAlignment="Top" Width="120" BorderBrush="{x:Null}" FontFamily="Segoe UI Variable Text Semibold">
+            <TextBox.Background>
+                <RadialGradientBrush>
+                    <GradientStop Color="#FF49D5F9" Offset="1"/>
+                    <GradientStop Color="#FF00CAFF"/>
+                </RadialGradientBrush>
+            </TextBox.Background>
+        </TextBox>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="91,354,0,0" TextWrapping="Wrap" Text="Body fat % Estimate" VerticalAlignment="Top" Width="120" BorderBrush="{x:Null}" FontFamily="Segoe UI Variable Text Semibold">
+            <TextBox.Background>
+                <RadialGradientBrush>
+                    <GradientStop Color="#FF49D5F9" Offset="1"/>
+                    <GradientStop Color="#FF00CAFF"/>
+                </RadialGradientBrush>
+            </TextBox.Background>
+        </TextBox>
+    </Grid>
+</Window>
