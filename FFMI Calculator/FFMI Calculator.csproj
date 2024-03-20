@@ -98,8 +98,5 @@
   <ItemGroup>
     <Resource Include="download.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Screenshot 2024-03-14 152518.png" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
